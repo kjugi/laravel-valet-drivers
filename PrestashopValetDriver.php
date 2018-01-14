@@ -136,10 +136,13 @@ class PrestaShopValetDriver extends ValetDriver
             // die('admin');
             $sitePath .= '/cyril15';
         } 
-
-        // return $sitePath . $uri . '/index.php';
-
-        $_SERVER['SCRIPT_FILENAME'] = $sitePath . '/index.php';
-        return $sitePath . '/index.php';
+        
+        // die($sitePath . $uri);
+        if (strpos($sitePath . $uri, 'index.php') === false) {
+            return $sitePath . $uri . '/index.php';
+        }
+        else {
+            return $sitePath . $uri;
+        }
     }
 }
